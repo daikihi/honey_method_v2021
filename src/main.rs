@@ -1,20 +1,12 @@
 use actix_web::{HttpServer, App, web};
-use actix_files::NamedFile;
-use actix_web::{HttpRequest, Result};
 use actix_files as fs;
-use honey_method_v2021::presentations::controllers::prefecture_controller;
-use std::path::PathBuf;
-
-async fn index(_: HttpRequest) -> Result<NamedFile> {
-    let path: PathBuf = "./src/static/index.html".parse().unwrap();
-    Ok(NamedFile::open(path)?)
-}
+use honey_method_v2021::presentations::controllers::{static_files_controller, prefecture_controller};
 
 #[actix_web::main]
 async fn main()  -> std::io::Result<()> {
     HttpServer::new(|| {
         App::new()
-        .route("/web/index.html", web::get().to(index))
+        .route("/web/index.html", web::get().to(static_files_controller::index))
         .service(fs::Files::new("/web/static/scripts/", "./src/static/scripts/").show_files_listing())
         .service(prefecture_controller::get_all_prefectures)
     })
