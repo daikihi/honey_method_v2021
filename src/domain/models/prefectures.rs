@@ -27,8 +27,3 @@ pub struct Prefecture{
     pub name_alphabet: PrefectureAlphabet,
     pub name_kana: PrefectureKana
 }
-
-
-pub fn get_all_prefectures() {
-    
-}

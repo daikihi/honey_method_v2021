@@ -1,6 +1,6 @@
 
 use actix_web::HttpResponse;
-use actix_web::{get};
+use actix_web::get;
 
 use crate::domain::use_case::prefectures_use_case::get_all_prefectures_use_case;
 
